@@ -4692,3 +4692,45 @@ textarea {
 .amenity-mini-card:hover .media.wm {
   transform: scale(1.16);
 }
+
+/* Hero highlights: three items (possession date removed). */
+.hero-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 760px) {
+  .hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero-stat:nth-child(3) {
+    padding-left: 12px;
+    border-left: 1px solid rgba(var(--rgb-white), .16);
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 0;
+  }
+
+  .hero-stat,
+  .hero-stat:nth-child(3) {
+    padding-left: 10px;
+  }
+
+  .hero-stat:first-child {
+    padding-left: 0;
+  }
+
+  .hero-stat dd {
+    font-size: clamp(14px, 4.3vw, 18px);
+    white-space: nowrap;
+  }
+
+  .hero-stat dt {
+    font-size: 8px;
+    letter-spacing: .06em;
+  }
+}
