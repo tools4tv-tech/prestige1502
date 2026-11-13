@@ -4671,3 +4671,11 @@ textarea {
     grid-auto-columns: 82vw;
   }
 }
+
+/* Hero buttons: side by side only when both labels fit on one line. */
+@media (max-width: 760px) {
+  .hero-actions .btn {
+    flex: 1 1 230px;
+    white-space: nowrap;
+  }
+}
