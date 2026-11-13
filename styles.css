@@ -4679,3 +4679,16 @@ textarea {
     white-space: nowrap;
   }
 }
+
+/* Some supplied renders have "ARTIST IMPRESSION" printed in their bottom-right
+   corner. Crop it out by scaling from the top-left (image files unchanged). */
+.media.wm {
+  transform: scale(1.12);
+  transform-origin: 0 0;
+}
+
+.gallery-item:hover .media.wm,
+.gallery-item:focus-visible .media.wm,
+.amenity-mini-card:hover .media.wm {
+  transform: scale(1.16);
+}

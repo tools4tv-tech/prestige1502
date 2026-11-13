@@ -203,7 +203,7 @@
       if (previewNote) {
         previewNote.textContent = /representative/i.test(label)
           ? 'Representative lifestyle image, not a view of this project.'
-          : "Artist's impression. Indicative only; the actual development may differ.";
+          : 'Indicative visual. The actual development may differ.';
       }
       previouslyFocused = document.activeElement;
       setModalVisibility(galleryPreview, true);
