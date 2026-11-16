@@ -258,6 +258,43 @@
     whatsappLink.hidden = false;
   }
 
+  // Floor plans: blurred previews until the enquiry form is submitted.
+  const PLAN_UNLOCK_KEY = 'prestige150-plans-unlocked';
+  const planLocks = [...document.querySelectorAll('[data-plan-lock]')];
+  let plansUnlocked = false;
+
+  function unlockFloorPlans(remember) {
+    plansUnlocked = true;
+    planLocks.forEach((button) => {
+      const image = button.querySelector('img');
+      if (image && button.dataset.full) {
+        image.src = button.dataset.full;
+        image.alt = image.alt.replace('Blurred preview of the indicative', 'Indicative');
+      }
+      button.classList.remove('plan-locked');
+      button.classList.add('plan-unlocked');
+      const label = button.querySelector('.plan-lock-overlay strong')?.textContent.replace('Unlock the ', '') || 'floor plan';
+      button.setAttribute('aria-label', `Open the ${label} at full size in a new tab`);
+    });
+    if (remember) {
+      try { window.localStorage.setItem(PLAN_UNLOCK_KEY, '1'); } catch (error) { /* storage unavailable */ }
+    }
+  }
+
+  planLocks.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (plansUnlocked) {
+        window.open(button.dataset.fullSize || button.dataset.full, '_blank', 'noopener');
+      } else {
+        openEnquiry('Explore Floor Plans');
+      }
+    });
+  });
+
+  try {
+    if (window.localStorage.getItem(PLAN_UNLOCK_KEY) === '1') unlockFloorPlans(false);
+  } catch (error) { /* storage unavailable */ }
+
   const revealItems = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduceMotion) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -350,6 +387,10 @@
         formStatus.textContent = 'Thank you. This demo does not transmit or store your details. Connect a secure lead endpoint to receive enquiries.';
       }
       formStatus.classList.add('success');
+      if (payload.enquiryType === 'Explore Floor Plans') {
+        unlockFloorPlans(true);
+        formStatus.textContent += ' The floor plans are now unlocked below.';
+      }
       enquiryForm.reset();
       enquiryType.value = payload.enquiryType;
       if (pageUrl) pageUrl.value = window.location.href;
