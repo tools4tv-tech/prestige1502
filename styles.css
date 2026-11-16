@@ -4734,3 +4734,57 @@ textarea {
     letter-spacing: .06em;
   }
 }
+
+/* Overview stats: three items (possession date removed). */
+.stats-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stat-item,
+.stat-item:nth-child(odd),
+.stat-item:nth-child(even) {
+  padding: 21px 14px 20px;
+  border-right: 1px solid var(--color-line);
+}
+
+.stat-item:first-child {
+  padding-left: 0;
+}
+
+.stat-item:last-child {
+  border-right: 0;
+}
+
+.stat-item strong {
+  white-space: nowrap;
+}
+
+@media (max-width: 400px) {
+  .stat-item,
+  .stat-item:nth-child(odd),
+  .stat-item:nth-child(even) {
+    padding-inline: 10px;
+  }
+
+  .stat-item:first-child {
+    padding-left: 0;
+  }
+
+  .stat-item strong {
+    font-size: 26px;
+  }
+
+  .stat-item span {
+    font-size: 10px;
+  }
+}
+
+/* Scale stat figures to the grid's own width so all three always fit. */
+.stats-grid {
+  container-type: inline-size;
+}
+
+.stat-item strong,
+.stat-item:nth-child(n) strong {
+  font-size: clamp(18px, 6.8cqi, 43px);
+}
