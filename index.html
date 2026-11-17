@@ -184,7 +184,7 @@
             </div>
           </div>
           <figure class="plan-panel" id="plan-3bhk" role="tabpanel" aria-labelledby="tab-3bhk">
-            <button class="plan-image plan-locked" type="button" data-plan-lock data-full="images/floor-plan-3bhk.webp" data-full-size="images/floor-plan-3bhk.png" aria-label="Unlock the 3 BHK floor plan: opens the enquiry form">
+            <button class="plan-image plan-locked" type="button" data-plan-lock="floor" data-full="images/floor-plan-3bhk.webp" data-full-size="images/floor-plan-3bhk.png" aria-label="Unlock the 3 BHK floor plan: opens the enquiry form">
               <img src="images/floor-plan-3bhk-preview.webp" alt="Blurred preview of the indicative 3 BHK floor plan" width="1536" height="1024" loading="lazy" decoding="async">
               <span class="plan-lock-overlay" aria-hidden="true">
                 <span class="plan-lock-icon"></span>
@@ -197,7 +197,7 @@
             <figcaption><span><strong>3 BHK</strong> · 1,400 sq. ft. super built-up* · indicative layout</span></figcaption>
           </figure>
           <figure class="plan-panel" id="plan-4bhk" role="tabpanel" aria-labelledby="tab-4bhk" hidden>
-            <button class="plan-image plan-locked" type="button" data-plan-lock data-full="images/floor-plan-4bhk.webp" data-full-size="images/floor-plan-4bhk.png" aria-label="Unlock the 4 BHK floor plan: opens the enquiry form">
+            <button class="plan-image plan-locked" type="button" data-plan-lock="floor" data-full="images/floor-plan-4bhk.webp" data-full-size="images/floor-plan-4bhk.png" aria-label="Unlock the 4 BHK floor plan: opens the enquiry form">
               <img src="images/floor-plan-4bhk-preview.webp" alt="Blurred preview of the indicative 4 BHK floor plan" width="1536" height="1024" loading="lazy" decoding="async">
               <span class="plan-lock-overlay" aria-hidden="true">
                 <span class="plan-lock-icon"></span>
@@ -245,31 +245,85 @@
           <p class="section-intro">Explore the proposed residential design language, interiors and living spaces envisioned for Prestige Sector 150.</p>
         </div>
         <div class="spec-grid">
-          <article class="spec-item reveal"><span class="spec-number">01</span>
+          <article class="spec-card reveal">
+            <div class="spec-card-head">
+              <span class="spec-icon spec-icon-living" aria-hidden="true"></span>
+            </div>
             <h3>Living &amp; dining</h3>
             <p>A continuous living and dining environment with an emphasis on openness, natural light and functional circulation.</p>
+            <ul class="spec-tags" aria-label="Living and dining highlights">
+              <li>Open layout</li>
+              <li>Natural light</li>
+              <li>Easy circulation</li>
+            </ul>
           </article>
-          <article class="spec-item reveal"><span class="spec-number">02</span>
+          <article class="spec-card reveal">
+            <div class="spec-card-head">
+              <span class="spec-icon spec-icon-kitchen" aria-hidden="true"></span>
+            </div>
             <h3>Kitchen</h3>
             <p>Proposed modular kitchen with granite countertop and provision for chimney and hob.</p>
+            <ul class="spec-tags" aria-label="Kitchen highlights">
+              <li>Modular kitchen</li>
+              <li>Granite countertop</li>
+              <li>Chimney &amp; hob provision</li>
+            </ul>
           </article>
-          <article class="spec-item reveal"><span class="spec-number">03</span>
+          <article class="spec-card reveal">
+            <div class="spec-card-head">
+              <span class="spec-icon spec-icon-bedroom" aria-hidden="true"></span>
+            </div>
             <h3>Master bedroom</h3>
             <p>A private bedroom environment with proposed wardrobe provisions and balcony access.</p>
+            <ul class="spec-tags" aria-label="Master bedroom highlights">
+              <li>Wardrobe provision</li>
+              <li>Balcony access</li>
+            </ul>
           </article>
-          <article class="spec-item reveal"><span class="spec-number">04</span>
+          <article class="spec-card reveal">
+            <div class="spec-card-head">
+              <span class="spec-icon spec-icon-bath" aria-hidden="true"></span>
+            </div>
             <h3>Bathrooms</h3>
             <p>Modern vanity provisions, proposed glass shower enclosures and contemporary fittings.</p>
+            <ul class="spec-tags" aria-label="Bathrooms highlights">
+              <li>Vanity provision</li>
+              <li>Glass shower enclosure</li>
+              <li>Contemporary fittings</li>
+            </ul>
           </article>
-          <article class="spec-item reveal"><span class="spec-number">05</span>
+          <article class="spec-card reveal">
+            <div class="spec-card-head">
+              <span class="spec-icon spec-icon-balcony" aria-hidden="true"></span>
+            </div>
             <h3>Balconies</h3>
             <p>Wide balcony spaces envisioned to connect the interiors with the outdoors.</p>
+            <ul class="spec-tags" aria-label="Balconies highlights">
+              <li>Wide balconies</li>
+              <li>Indoor–outdoor living</li>
+            </ul>
           </article>
-          <article class="spec-item reveal"><span class="spec-number">06</span>
+          <article class="spec-card spec-card-cta reveal">
+            <span class="spec-icon spec-icon-doc" aria-hidden="true"></span>
+            <h3>Full specification sheet</h3>
+            <p>Get the detailed list of finishes, fittings and inclusions as it is released.</p>
+            <button class="btn btn-gold" type="button" data-enquiry="Download Brochure">Request specifications <span aria-hidden="true">↗</span></button>
+          </article>
+        </div>
+        <div class="spec-features reveal">
+          <div class="spec-features-head">
             <h3>Additional features</h3>
             <p>Indicative provisions for everyday function, services and shared infrastructure.</p>
-            <div class="feature-tags"><span>Premium flooring</span><span>Utility area</span><span>Mechanical ventilation</span><span>High-speed lifts</span><span>CCTV security</span><span>Rainwater harvesting</span><span>Sewage treatment plant</span></div>
-          </article>
+          </div>
+          <ul class="spec-feature-list">
+            <li><span class="feature-icon feature-icon-floor" aria-hidden="true"></span>Premium flooring</li>
+            <li><span class="feature-icon feature-icon-utility" aria-hidden="true"></span>Utility area</li>
+            <li><span class="feature-icon feature-icon-fan" aria-hidden="true"></span>Mechanical ventilation</li>
+            <li><span class="feature-icon feature-icon-lift" aria-hidden="true"></span>High-speed lifts</li>
+            <li><span class="feature-icon feature-icon-cctv" aria-hidden="true"></span>CCTV security</li>
+            <li><span class="feature-icon feature-icon-rain" aria-hidden="true"></span>Rainwater harvesting</li>
+            <li><span class="feature-icon feature-icon-stp" aria-hidden="true"></span>Sewage treatment plant</li>
+          </ul>
         </div>
         <p class="footnote" style="margin-top:16px;">All descriptions are indicative pre-launch information. Final specifications, brands, dimensions and inclusions must be confirmed through RERA-registered documents and the agreement for sale.</p>
       </div>
@@ -285,13 +339,23 @@
             <div><strong>14.83 acres*</strong><span>Indicative project land parcel</span></div>
             <div><strong>Sector 150</strong><span>Sports City land-use context</span></div>
             <div><strong>70%*</strong><span>Approx. sector-level sports &amp; open uses</span></div>
-            <div><strong>Not published</strong><span>Sanctioned project master plan</span></div>
+            <div><strong>On request</strong><span>Indicative project master plan</span></div>
           </div><button class="btn btn-light" type="button" data-enquiry="Request Master Plan">Request master plan <span aria-hidden="true">↗</span></button>
         </div>
-        <div class="plan-placeholder reveal" role="img" aria-label="Master plan availability placeholder. This is not an approved development layout.">
-          <div class="plan-lines"></div>
-          <div class="plan-outline"></div>
-          <div class="plan-center"><span>Official project plan</span><strong>Awaiting release</strong><small>No conceptual drawing is presented as a sanctioned layout.</small></div><span class="art-label">Availability placeholder · not an approved plan</span>
+        <div class="master-plan-lock reveal">
+          <!-- Placeholder: shows the 4 BHK floor plan until the official master plan is available.
+               To use the real plan, change data-full / data-full-size and the preview img src. -->
+          <button class="plan-image plan-locked master-plan-image" type="button" data-plan-lock="master" data-full="images/floor-plan-4bhk.webp" data-full-size="images/floor-plan-4bhk.png" aria-label="Unlock the master plan: opens the enquiry form">
+            <img src="images/floor-plan-4bhk-preview.webp" alt="Blurred preview of the indicative master plan" width="1536" height="1024" loading="lazy" decoding="async">
+            <span class="plan-lock-overlay" aria-hidden="true">
+              <span class="plan-lock-icon"></span>
+              <strong>Unlock the master plan</strong>
+              <span class="plan-lock-text">Share your details to view the layout</span>
+              <span class="plan-lock-cta">View master plan ↗</span>
+            </span>
+            <span class="plan-zoom" aria-hidden="true">View full size ↗</span>
+          </button>
+          <p class="master-plan-note">Indicative layout, not to scale. Subject to the sanctioned plan.</p>
         </div>
       </div>
     </section>
@@ -564,7 +628,6 @@
           <div class="form-field"><label for="mobile-number">Mobile number *</label><input id="mobile-number" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91 98765 43210" aria-describedby="mobile-help"><small id="mobile-help" class="footnote">Enter a valid 10-digit Indian mobile number.</small></div>
           <div class="form-field"><label for="email-address">Email address <span style="font-weight:400;letter-spacing:0;text-transform:none;">(optional)</span></label><input id="email-address" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
         </div>
-        <label class="consent-row"><input type="checkbox" name="consent" required><span>I agree to be contacted about Prestige Sector 150 project information, in accordance with the <a href="privacy/" target="_blank" rel="noopener">Privacy Policy</a>. Consent is required to submit this request.</span></label>
         <button class="btn btn-dark form-submit" type="submit">Submit enquiry <span aria-hidden="true">↗</span></button>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         <p class="form-privacy">Demo form: no personal information is sent or stored. A secure CRM/API destination must be configured before this form is used for live leads.</p>

@@ -258,42 +258,50 @@
     whatsappLink.hidden = false;
   }
 
-  // Floor plans: blurred previews until the enquiry form is submitted.
-  const PLAN_UNLOCK_KEY = 'prestige150-plans-unlocked';
+  // Locked plans: blurred previews until the matching enquiry form is submitted.
+  // Each lock group (floor plans, master plan) unlocks on its own form intent.
+  const PLAN_LOCK_GROUPS = {
+    floor: { intent: 'Explore Floor Plans', storageKey: 'prestige150-plans-unlocked' },
+    master: { intent: 'Request Master Plan', storageKey: 'prestige150-masterplan-unlocked' }
+  };
   const planLocks = [...document.querySelectorAll('[data-plan-lock]')];
-  let plansUnlocked = false;
+  const unlockedGroups = new Set();
+  const lockGroupOf = (button) => button.dataset.planLock || 'floor';
 
-  function unlockFloorPlans(remember) {
-    plansUnlocked = true;
-    planLocks.forEach((button) => {
+  function unlockPlanGroup(group, remember) {
+    unlockedGroups.add(group);
+    planLocks.filter((button) => lockGroupOf(button) === group).forEach((button) => {
       const image = button.querySelector('img');
       if (image && button.dataset.full) {
         image.src = button.dataset.full;
-        image.alt = image.alt.replace('Blurred preview of the indicative', 'Indicative');
+        image.alt = image.alt.replace(/^Blurred preview of the /, '').replace(/^indicative/, 'Indicative');
       }
       button.classList.remove('plan-locked');
       button.classList.add('plan-unlocked');
-      const label = button.querySelector('.plan-lock-overlay strong')?.textContent.replace('Unlock the ', '') || 'floor plan';
+      const label = button.querySelector('.plan-lock-overlay strong')?.textContent.replace('Unlock the ', '') || 'plan';
       button.setAttribute('aria-label', `Open the ${label} at full size in a new tab`);
     });
     if (remember) {
-      try { window.localStorage.setItem(PLAN_UNLOCK_KEY, '1'); } catch (error) { /* storage unavailable */ }
+      try { window.localStorage.setItem(PLAN_LOCK_GROUPS[group].storageKey, '1'); } catch (error) { /* storage unavailable */ }
     }
   }
 
   planLocks.forEach((button) => {
     button.addEventListener('click', () => {
-      if (plansUnlocked) {
+      const group = lockGroupOf(button);
+      if (unlockedGroups.has(group)) {
         window.open(button.dataset.fullSize || button.dataset.full, '_blank', 'noopener');
       } else {
-        openEnquiry('Explore Floor Plans');
+        openEnquiry(PLAN_LOCK_GROUPS[group].intent);
       }
     });
   });
 
-  try {
-    if (window.localStorage.getItem(PLAN_UNLOCK_KEY) === '1') unlockFloorPlans(false);
-  } catch (error) { /* storage unavailable */ }
+  Object.entries(PLAN_LOCK_GROUPS).forEach(([group, config]) => {
+    try {
+      if (window.localStorage.getItem(config.storageKey) === '1') unlockPlanGroup(group, false);
+    } catch (error) { /* storage unavailable */ }
+  });
 
   const revealItems = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduceMotion) {
@@ -328,7 +336,6 @@
     const fullName = enquiryForm.elements.fullName.value.trim();
     const mobile = normalizeIndianMobile(enquiryForm.elements.mobile.value.trim());
     const email = enquiryForm.elements.email.value.trim();
-    const consent = enquiryForm.elements.consent.checked;
     const indianMobilePattern = /^[6-9]\d{9}$/;
 
     if (fullName.length < 2) {
@@ -349,12 +356,6 @@
       enquiryForm.elements.email.focus();
       return;
     }
-    if (!consent) {
-      formStatus.textContent = 'Please provide consent so we can respond to your enquiry.';
-      formStatus.classList.add('error');
-      enquiryForm.elements.consent.focus();
-      return;
-    }
 
     submitButton.disabled = true;
     submitButton.innerHTML = 'Submitting…';
@@ -367,8 +368,7 @@
       enquiryType: enquiryType.value,
       projectName: enquiryForm.elements.projectName.value,
       pageUrl: pageUrl.value,
-      source: enquiryForm.elements.source.value,
-      consent: true
+      source: enquiryForm.elements.source.value
     };
 
     try {
@@ -387,9 +387,12 @@
         formStatus.textContent = 'Thank you. This demo does not transmit or store your details. Connect a secure lead endpoint to receive enquiries.';
       }
       formStatus.classList.add('success');
-      if (payload.enquiryType === 'Explore Floor Plans') {
-        unlockFloorPlans(true);
-        formStatus.textContent += ' The floor plans are now unlocked below.';
+      const unlockedGroup = Object.keys(PLAN_LOCK_GROUPS).find((group) => PLAN_LOCK_GROUPS[group].intent === payload.enquiryType);
+      if (unlockedGroup) {
+        unlockPlanGroup(unlockedGroup, true);
+        formStatus.textContent += unlockedGroup === 'master'
+          ? ' The master plan is now unlocked.'
+          : ' The floor plans are now unlocked below.';
       }
       enquiryForm.reset();
       enquiryType.value = payload.enquiryType;
