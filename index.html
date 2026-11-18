@@ -14,15 +14,15 @@
   <meta property="og:image" content="images/hero-aerial-view.webp">
   <link rel="preload" as="image" href="images/hero-aerial-view.webp" fetchpriority="high">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23073F42%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-family=%27Georgia,serif%27 font-size=%2738%27 font-weight=%27700%27 fill=%27%23F2C34E%27 text-anchor=%27middle%27%3EP%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="theme.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css?v=202611181652">
+  <link rel="stylesheet" href="styles.css?v=202611181652">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Tailwind's .container (width:100% + breakpoint max-widths) overrides the site's
     // gutter-aware .container in styles.css and makes content run edge-to-edge.
     tailwind.config = { corePlugins: { container: false } };
   </script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=202611181652" defer></script>
 </head>
 
 <body>
@@ -41,6 +41,10 @@
         <a href="#location">Location</a>
         <a href="#gallery">Gallery</a>
         <a href="#prestige">About Prestige</a>
+        <div class="nav-menu-footer">
+          <button class="btn nav-menu-cta" type="button" data-enquiry="Enquire Now">Enquire now <span aria-hidden="true">↗</span></button>
+          <p>Prestige Group · Sector 150, Noida</p>
+        </div>
       </nav>
       <button class="btn nav-cta" type="button" data-enquiry="Enquire Now">Enquire now <span aria-hidden="true">↗</span></button>
       <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span></span></button>
@@ -97,6 +101,26 @@
             <div class="stat-item"><strong>2, 3 &amp; 4</strong><span>BHK types*</span></div>
           </div>
           <p class="footnote">*Indicative pre-launch information; subject to confirmation through official project disclosures.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad spaces-section" id="spaces" aria-labelledby="spaces-title">
+      <div class="container">
+        <div class="amenity-showcase reveal">
+          <div class="amenity-showcase-heading"><p class="eyebrow">Proposed spaces</p><h2 id="spaces-title">A closer look at the everyday.</h2></div>
+          <div class="amenity-mini-grid">
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Clubhouse.webp" alt="The clubhouse building" width="320" height="215" loading="lazy" decoding="async"></div><h3>Clubhouse</h3></article>
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Swimming-Wellness-Centre.webp" alt="The indoor swimming and wellness centre" width="320" height="215" loading="lazy" decoding="async"></div><h3>Swimming &amp; wellness centre</h3></article>
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Gymnasium.webp" alt="The gymnasium" width="320" height="215" loading="lazy" decoding="async"></div><h3>Gymnasium</h3></article>
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Extensive-Landscaped-Green-Spaces.webp" alt="Landscaped gardens with a water channel" width="320" height="215" loading="lazy" decoding="async"></div><h3>Landscaped green spaces</h3></article>
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Jogging-Track.webp" alt="The jogging track between towers" width="320" height="215" loading="lazy" decoding="async"></div><h3>Jogging track</h3></article>
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Indoor-Multipurpose-Sports-Hall.webp" alt="The indoor multipurpose sports hall" width="320" height="215" loading="lazy" decoding="async"></div><h3>Indoor sports hall</h3></article>
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Cricket-Academy.webp" alt="Cricket practice nets" width="320" height="215" loading="lazy" decoding="async"></div><h3>Cricket academy</h3></article>
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Multipurpose-Playfield.webp" alt="The multipurpose playfield" width="320" height="215" loading="lazy" decoding="async"></div><h3>Multipurpose playfield</h3></article>
+            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media" src="images/yoga-meditation-lawn.jpg" alt="Representative image of a yoga and meditation lawn" width="320" height="215" loading="lazy" decoding="async"><span class="art-label">Representative image</span></div><h3>Yoga &amp; meditation lawn</h3></article>
+          </div>
+          <p class="footnote amenity-disclaimer">All amenities are proposed and indicative. Final facilities are subject to RERA-registered documents.</p>
         </div>
       </div>
     </section>
@@ -425,20 +449,6 @@
             </ul>
           </div>
         </div>
-        <div class="amenity-showcase reveal">
-          <div class="amenity-showcase-heading"><p class="eyebrow">Proposed spaces</p><h3>A closer look at the everyday.</h3></div>
-          <div class="amenity-mini-grid">
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Clubhouse.webp" alt="The clubhouse building" width="320" height="215" loading="lazy" decoding="async"></div><h4>Clubhouse</h4></article>
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Swimming-Wellness-Centre.webp" alt="The indoor swimming and wellness centre" width="320" height="215" loading="lazy" decoding="async"></div><h4>Swimming &amp; wellness centre</h4></article>
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Gymnasium.webp" alt="The gymnasium" width="320" height="215" loading="lazy" decoding="async"></div><h4>Gymnasium</h4></article>
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Extensive-Landscaped-Green-Spaces.webp" alt="Landscaped gardens with a water channel" width="320" height="215" loading="lazy" decoding="async"></div><h4>Landscaped green spaces</h4></article>
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Jogging-Track.webp" alt="The jogging track between towers" width="320" height="215" loading="lazy" decoding="async"></div><h4>Jogging track</h4></article>
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Indoor-Multipurpose-Sports-Hall.webp" alt="The indoor multipurpose sports hall" width="320" height="215" loading="lazy" decoding="async"></div><h4>Indoor sports hall</h4></article>
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Cricket-Academy.webp" alt="Cricket practice nets" width="320" height="215" loading="lazy" decoding="async"></div><h4>Cricket academy</h4></article>
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media wm" src="images/Multipurpose-Playfield.webp" alt="The multipurpose playfield" width="320" height="215" loading="lazy" decoding="async"></div><h4>Multipurpose playfield</h4></article>
-            <article class="amenity-mini-card"><div class="amenity-mini-art"><img class="media" src="images/yoga-meditation-lawn.jpg" alt="Representative image of a yoga and meditation lawn" width="320" height="215" loading="lazy" decoding="async"><span class="art-label">Representative image</span></div><h4>Yoga &amp; meditation lawn</h4></article>
-          </div>
-        </div>
         <p class="footnote amenity-disclaimer">All amenities are proposed and indicative. Final facilities, specifications and phasing are subject to RERA-registered documents.</p>
       </div>
     </section>
@@ -600,6 +610,13 @@
       <div class="footer-top">
         <div class="footer-brand"><a class="brand" href="./" aria-label="Prestige Sector 150 home"><span class="brand-mark" aria-hidden="true">P</span><span class="brand-copy">Prestige Sector 150<small>Noida · Sports City</small></span></a>
           <p>A pre-launch information page for proposed residences in Sector 150, Noida.</p>
+          <div class="footer-contact">
+            <p class="footer-contact-label">Talk to a property advisor</p>
+            <div class="footer-contact-links">
+              <a class="footer-contact-link" href="tel:+917417412100" aria-label="Call +91 741 741 2100"><span class="footer-contact-icon"><img src="images/icons8-call.gif" alt="" width="20" height="20" loading="lazy"></span><span class="footer-contact-text"><small>Call us</small>+91 741 741 2100</span></a>
+              <a class="footer-contact-link" href="https://wa.me/917417412100?text=Hi%2C%20I%20would%20like%20details%20about%20Prestige%20Sector%20150%2C%20Noida." target="_blank" rel="noopener" aria-label="Chat on WhatsApp at +91 741 741 2100"><span class="footer-contact-icon"><img src="images/icons8-whatsapp.gif" alt="" width="20" height="20" loading="lazy"></span><span class="footer-contact-text"><small>WhatsApp</small>Chat with us</span></a>
+            </div>
+          </div>
         </div>
         <nav class="footer-links" aria-label="Footer links"><a href="#overview">Overview</a><a href="#residences">Residences</a><a href="#pricing">Pricing</a><a href="#amenities">Amenities</a><a href="#location">Location</a><a href="#prestige">Developer</a><a href="privacy/">Privacy policy</a><a href="terms/">Terms of use</a></nav>
       </div>
@@ -626,7 +643,7 @@
         <div class="hp-field" aria-hidden="true"><label for="company-website">Leave this field empty</label><input id="company-website" name="companyWebsite" type="text" tabindex="-1" autocomplete="off"></div>
         <div class="form-field"><label for="full-name">Full name *</label><input id="full-name" name="fullName" type="text" autocomplete="name" required maxlength="80" placeholder="Your name"></div>
         <div class="form-grid">
-          <div class="form-field"><label for="mobile-number">Mobile number *</label><input id="mobile-number" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91 98765 43210" aria-describedby="mobile-help"><small id="mobile-help" class="footnote">Enter a valid 10-digit Indian mobile number.</small></div>
+          <div class="form-field"><label for="mobile-number">Mobile number *</label><input id="mobile-number" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div>
           <div class="form-field"><label for="email-address">Email address <span style="font-weight:400;letter-spacing:0;text-transform:none;">(optional)</span></label><input id="email-address" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
         </div>
         <button class="btn btn-dark form-submit" type="submit">Submit enquiry <span aria-hidden="true">↗</span></button>

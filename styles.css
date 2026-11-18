@@ -1455,7 +1455,7 @@ svg {
   margin-top: 64px;
 }
 
-.amenity-showcase-heading h3 {
+.amenity-showcase-heading h2 {
   margin: 0 0 28px;
   font-family: var(--font-heading);
   font-size: clamp(26px, 3.2vw, 40px);
@@ -1488,7 +1488,7 @@ svg {
   max-width: calc(100% - 24px);
 }
 
-.amenity-mini-card h4 {
+.amenity-mini-card h3 {
   margin: 14px 0 0;
   font-family: var(--font-heading);
   font-size: 20px;
@@ -2998,7 +2998,7 @@ select {
     gap: 14px;
   }
 
-  .amenity-mini-card h4 {
+  .amenity-mini-card h3 {
     margin-top: 10px;
     font-size: 16px;
   }
@@ -5812,4 +5812,331 @@ textarea {
   .location-map-live {
     min-height: 360px;
   }
+}
+
+/* Proposed spaces (standalone, before residences) */
+.spaces-section .amenity-showcase {
+  margin-top: 0;
+}
+
+.spaces-section .amenity-disclaimer {
+  margin-top: 28px;
+}
+
+/* ==========================================================================
+   Mobile menu — final word. Hamburger morphs into a close (X) icon and the
+   menu opens as a deep-teal panel with numbered serif links and a CTA.
+   ========================================================================== */
+.nav-menu-footer {
+  display: none;
+}
+
+.menu-toggle {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(var(--rgb-white), .55);
+  border-radius: 50%;
+  color: inherit;
+  transition: background .25s, border-color .25s;
+}
+
+.site-header.is-sticky .menu-toggle {
+  border-color: var(--color-line);
+}
+
+.menu-toggle span,
+.menu-toggle::before,
+.menu-toggle::after {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 9px);
+  width: 18px;
+  height: 2px;
+  margin: 0;
+  border-radius: 2px;
+  transition: transform .3s ease, opacity .2s ease;
+}
+
+.menu-toggle::before { transform: translateY(-6px); }
+.menu-toggle span { transform: none; }
+.menu-toggle::after { transform: translateY(6px); }
+
+.menu-toggle[aria-expanded="true"]::before { transform: rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span { opacity: 0; transform: scaleX(0); }
+.menu-toggle[aria-expanded="true"]::after { transform: rotate(-45deg); }
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1040px) {
+  .site-header.menu-open,
+  .site-header.menu-open.is-sticky {
+    background: var(--color-deep);
+    color: var(--color-primary-contrast);
+    box-shadow: none;
+  }
+
+  .site-header.menu-open .menu-toggle {
+    border-color: var(--color-gold);
+    background: rgba(var(--rgb-white), .08);
+  }
+
+  .nav-links,
+  .site-header.is-sticky .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: calc(100svh - 70px);
+    margin: 0;
+    padding: 10px 24px 28px;
+    overflow-y: auto;
+    border-top: 1px solid rgba(var(--rgb-white), .12);
+    background: var(--color-deep);
+    color: var(--color-primary-contrast);
+    box-shadow: 0 30px 60px rgba(4, 30, 32, .35);
+    counter-reset: navitem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s;
+  }
+
+  .site-header .nav-links.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity .3s ease, transform .3s ease, visibility 0s;
+  }
+
+  .nav-links a {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 16px 28px 16px 0;
+    border-bottom: 1px solid rgba(var(--rgb-white), .12);
+    font-family: var(--font-heading);
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: 0;
+    opacity: 1;
+    counter-increment: navitem;
+    transition: color .2s, padding-left .25s;
+  }
+
+  .nav-links a::before {
+    min-width: 22px;
+    color: var(--color-gold);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    content: counter(navitem, decimal-leading-zero);
+  }
+
+  .nav-links a::after {
+    position: absolute;
+    top: 50%;
+    right: 2px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    opacity: .45;
+    transform: translateY(-50%);
+    transition: transform .25s, opacity .25s;
+    content: '→';
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: var(--color-gold);
+    padding-left: 4px;
+  }
+
+  .nav-links a:hover::after,
+  .nav-links a:focus-visible::after {
+    opacity: 1;
+    transform: translate(3px, -50%);
+  }
+
+  .nav-menu-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding-top: 24px;
+  }
+
+  .nav-menu-cta {
+    min-height: 48px;
+    padding-inline: 24px;
+    border-color: var(--color-gold);
+    background: var(--color-gold);
+    color: var(--color-deep);
+    font-weight: 700;
+  }
+
+  .nav-menu-footer p {
+    margin: 0;
+    font-size: 10px;
+    letter-spacing: .12em;
+    opacity: .6;
+    text-transform: uppercase;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-links a {
+    padding-block: 14px;
+    font-size: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-links,
+  .site-header .nav-links.is-open,
+  .menu-toggle span,
+  .menu-toggle::before,
+  .menu-toggle::after {
+    transition: none;
+  }
+}
+
+/* Footer contact: call + WhatsApp */
+.footer-contact {
+  margin-top: 26px;
+}
+
+.footer-contact-label {
+  margin: 0 0 12px;
+  color: var(--color-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.footer-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 9px 20px 9px 9px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .04);
+  color: var(--color-primary-contrast);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+
+.footer-contact-icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.footer-contact-icon img {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.footer-contact-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .01em;
+}
+
+.footer-contact-text small {
+  color: rgba(255, 255, 255, .55);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  border-color: var(--color-gold);
+  background: rgba(255, 255, 255, .08);
+  transform: translateY(-2px);
+}
+
+.footer-contact-link:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 420px) {
+  .footer-contact-link {
+    flex: 1 1 100%;
+  }
+}
+
+/* ==========================================================================
+   Responsive polish
+   ========================================================================== */
+/* Dim the page and hide floating actions while the mobile menu is open. */
+@media (max-width: 1040px) {
+  body.nav-open::before {
+    position: fixed;
+    z-index: 29;
+    inset: 0;
+    background: rgba(4, 30, 32, .55);
+    content: '';
+  }
+
+  body.nav-open .mobile-bar,
+  body.nav-open .whatsapp-float {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+/* Breathing room where headings, intros and buttons were touching. */
+.footer-brand .brand + p {
+  margin-top: 16px;
+}
+
+.developer-section .section-title + .section-intro {
+  margin-top: 22px;
+}
+
+.developer-section .section-intro + .section-intro {
+  margin-top: 14px;
+}
+
+.faq-aside .section-intro + .btn {
+  margin-top: 22px;
 }
