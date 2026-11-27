@@ -1011,7 +1011,8 @@
         pageUrl.value = window.location.href;
       }
 
-      // Keep success message visible.
+      // Go to the thank-you page (plan unlocks are already saved).
+      window.location.href = 'thank-you/';
 
     } catch (error) {
 
@@ -1045,4 +1046,19 @@
 
   });
 
+})();
+
+// Footer disclaimer: Read more / Read less
+(() => {
+  const toggle = document.querySelector('.footer-disclaimer-toggle');
+  const text = document.getElementById('footer-disclaimer');
+  if (!toggle || !text) return;
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    text.toggleAttribute('data-collapsed', expanded);
+    toggle.innerHTML = expanded
+      ? 'Read more <span aria-hidden="true">↓</span>'
+      : 'Read less <span aria-hidden="true">↑</span>';
+  });
 })();
