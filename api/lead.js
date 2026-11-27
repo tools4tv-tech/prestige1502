@@ -66,9 +66,15 @@ module.exports = async function handler(req, res) {
       body.name || body.fullName || ""
     ).trim();
 
-    let phone = String(
+    // Any number is accepted (Indian or international). Keep a leading "+"
+    // for country codes and strip spaces, dashes and other formatting.
+    const rawPhone = String(
       body.phone || body.mobile || ""
-    ).replace(/\D/g, "");
+    ).trim();
+
+    const phone =
+      (rawPhone.startsWith("+") ? "+" : "") +
+      rawPhone.replace(/\D/g, "").slice(0, 20);
 
     const email = String(body.email || "").trim();
 
@@ -79,20 +85,7 @@ module.exports = async function handler(req, res) {
     ).trim();
 
     // ----------------------------------------
-    // 3. Normalize Indian mobile number
-    // ----------------------------------------
-
-    if (phone.length === 12 && phone.startsWith("91")) {
-      phone = phone.slice(2);
-    } else if (
-      phone.length === 11 &&
-      phone.startsWith("0")
-    ) {
-      phone = phone.slice(1);
-    }
-
-    // ----------------------------------------
-    // 4. Validate customer information
+    // 3. Validate customer information
     // ----------------------------------------
 
     if (name.length < 2 || name.length > 100) {
@@ -102,10 +95,10 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    if (!/^[6-9]\d{9}$/.test(phone)) {
+    if (!/\d/.test(phone)) {
       return res.status(400).json({
         success: false,
-        message: "Please enter a valid Indian mobile number."
+        message: "Please enter your mobile number."
       });
     }
 

@@ -852,21 +852,11 @@
       return;
     }
 
-    const normalizedMobile = mobile.replace(/\D/g, '');
-
-    const indianMobile =
-      normalizedMobile.length === 12 &&
-      normalizedMobile.startsWith('91')
-        ? normalizedMobile.slice(2)
-        : normalizedMobile.length === 11 &&
-          normalizedMobile.startsWith('0')
-          ? normalizedMobile.slice(1)
-          : normalizedMobile;
-
-    if (!/^[6-9]\d{9}$/.test(indianMobile)) {
+    // Any number is accepted (Indian or international); it only can't be empty.
+    if (!mobile) {
 
       formStatus.textContent =
-        'Please enter a valid Indian mobile number.';
+        'Please enter your mobile number.';
 
       formStatus.classList.add('error');
 
@@ -911,7 +901,7 @@
 
       // Customer details
       name: fullName,
-      phone: indianMobile,
+      phone: mobile,
       email: email,
 
       // Enquiry information

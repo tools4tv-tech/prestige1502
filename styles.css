@@ -6140,3 +6140,613 @@ textarea {
 .faq-aside .section-intro + .btn {
   margin-top: 22px;
 }
+
+/* ==========================================================================
+   Location — key-distance panel and factsheet distance cards
+   ========================================================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.location-section .location-grid {
+  align-items: stretch;
+}
+
+.loc-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--radius);
+  background: var(--color-deep);
+  color: var(--color-primary-contrast);
+}
+
+.loc-panel-label {
+  margin: 0;
+  color: var(--color-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.loc-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 8px;
+}
+
+.loc-highlight {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: calc(var(--radius) * .7);
+  background: rgba(255, 255, 255, .05);
+}
+
+.loc-highlight dt {
+  color: rgba(255, 255, 255, .78);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.loc-highlight dd {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+}
+
+.loc-highlight strong {
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 3.4vw, 44px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.loc-highlight strong small {
+  margin-left: 4px;
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.loc-highlight dd > span {
+  color: rgba(255, 255, 255, .55);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.loc-why {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.loc-why li {
+  position: relative;
+  padding-left: 22px;
+  color: rgba(255, 255, 255, .85);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.loc-why li::before {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 13px;
+  height: 7px;
+  border-bottom: 2px solid var(--color-gold);
+  border-left: 2px solid var(--color-gold);
+  transform: rotate(-45deg);
+  content: '';
+}
+
+.loc-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.loc-card {
+  min-width: 0;
+  padding: 22px 22px 18px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: 0 12px 34px rgba(var(--rgb-deep), .06);
+}
+
+.loc-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.loc-badge {
+  display: grid;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-deep);
+  color: var(--color-gold);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.loc-card-head h3 {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.loc-count {
+  flex: 0 0 auto;
+  color: var(--color-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.loc-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.loc-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  align-items: baseline;
+}
+
+.loc-name {
+  min-width: 0;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.loc-dist {
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.loc-bar {
+  grid-column: 1 / -1;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-soft);
+}
+
+.loc-bar span {
+  display: block;
+  width: var(--w);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .9s cubic-bezier(.2, .7, .2, 1) .15s;
+}
+
+.loc-card.is-visible .loc-bar span {
+  transform: scaleX(1);
+}
+
+.loc-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-top: 24px;
+}
+
+.loc-foot .location-note {
+  max-width: 720px;
+  margin: 0;
+}
+
+@media (max-width: 1040px) {
+  .loc-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .loc-cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .loc-highlights,
+  .loc-why {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .loc-highlight {
+    padding: 14px;
+  }
+
+  .loc-highlight dd {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .loc-card {
+    padding: 18px 16px 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .loc-why {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loc-bar span {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Responsive refinements — legibility, tap targets, small phones,
+   landscape phones and floating actions. Final word; keep at file end.
+   ========================================================================== */
+
+/* Readable minimums for small uppercase labels, notes and buttons. */
+.eyebrow,
+.btn,
+.loc-panel-label,
+.footer-contact-label,
+.hero-price-label,
+.hero-badge,
+.config-specs dt,
+.config-price span,
+.config-price small,
+.card-kicker,
+.loc-count,
+.amenity-count,
+.scene-caption,
+.hero-stat dt,
+.stat-item span,
+.price-row-head span {
+  font-size: max(11px, 1em);
+}
+
+.eyebrow,
+.btn {
+  font-size: 11px;
+}
+
+.footnote,
+.plan-note,
+.location-note,
+.gallery-disclaimer,
+.amenity-disclaimer,
+.disclaimer-mini,
+.map-foot,
+.text-link {
+  font-size: 12px;
+}
+
+.footer-disclaimer {
+  font-size: 11.5px;
+  line-height: 1.75;
+}
+
+.footer-bottom,
+.footer-bottom a {
+  font-size: 11px;
+}
+
+.footer-links a,
+.footer-brand p {
+  font-size: 13px;
+}
+
+.brand-copy {
+  font-size: 11px;
+}
+
+.brand-copy small {
+  font-size: 9.5px;
+}
+
+.art-label {
+  font-size: 10px;
+}
+
+.nav-links a {
+  font-size: clamp(10.5px, .82vw, 12px);
+}
+
+/* Comfortable tap targets. */
+.brand {
+  min-height: 44px;
+}
+
+.text-link {
+  min-height: 44px;
+  padding-block: 10px;
+}
+
+/* Floating WhatsApp: icon only on tablets and laptops so it never covers content. */
+@media (max-width: 1439px) {
+  .whatsapp-float {
+    padding: 8px;
+  }
+
+  .whatsapp-float span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+.mobile-bar-wa {
+  display: none;
+}
+
+/* Phones: Call | WhatsApp | Enquire in the bottom bar, no floating button. */
+@media (max-width: 760px) {
+  .whatsapp-float {
+    display: none !important;
+  }
+
+  .mobile-bar {
+    grid-template-columns: 1fr 1fr 1.15fr;
+    height: 60px;
+    background: var(--color-primary);
+  }
+
+  .mobile-bar button,
+  .mobile-bar a.mobile-bar-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 0;
+    padding: 0 6px;
+    border: 0;
+    border-left: 1px solid rgba(255, 255, 255, .16);
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+
+  .mobile-bar > :first-child {
+    border-left: 0;
+  }
+
+  .mobile-bar > :last-child {
+    background: var(--color-gold);
+    color: var(--color-deep);
+  }
+
+  .mobile-bar button img,
+  .mobile-bar a.mobile-bar-wa img {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  /* Keep the end of the page clear of the fixed bar. */
+  .site-footer {
+    padding-bottom: 92px;
+  }
+
+  .footer-links {
+    gap: 14px 22px;
+  }
+}
+
+/* Small phones: headings sized so long words never touch the edges. */
+@media (max-width: 480px) {
+  .section-title,
+  .intro-copy .section-title,
+  .master-copy .section-title,
+  .developer-section .section-title,
+  .final-content .section-title {
+    font-size: clamp(32px, 9.4vw, 44px);
+    line-height: 1.06;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 12.5vw, 56px);
+  }
+}
+
+@media (max-width: 360px) {
+  .mobile-bar button,
+  .mobile-bar a.mobile-bar-wa {
+    font-size: 10px;
+    letter-spacing: 0;
+  }
+
+  .mobile-bar button img,
+  .mobile-bar a.mobile-bar-wa img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Landscape phones and other short screens: slimmer header, bar and menu. */
+@media (max-height: 520px) and (orientation: landscape) {
+  .nav-wrap {
+    min-height: 60px;
+  }
+
+  .menu-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mobile-bar {
+    height: 48px;
+  }
+
+  .nav-links,
+  .site-header.is-sticky .nav-links {
+    max-height: calc(100svh - 60px);
+  }
+
+  .nav-links a {
+    padding-block: 10px;
+    font-size: 17px;
+  }
+
+  .hero {
+    min-height: max(560px, 100svh);
+  }
+}
+
+/* Legibility: beat the more specific per-section mobile rules. */
+.config-actions .btn,
+.config-card .btn {
+  font-size: 11px;
+}
+
+.hero-foot .disclaimer-mini,
+.location-map-live .map-foot {
+  font-size: 11px;
+}
+
+.amenity-mini-art .art-label,
+.gallery-caption span,
+.price-row-head span,
+.footer-contact-text small {
+  font-size: 10.5px;
+}
+
+/* Mobile menu: start the list at the top so every link stays reachable when it scrolls. */
+@media (max-width: 1040px) {
+  .nav-links,
+  .site-header.is-sticky .nav-links {
+    justify-content: flex-start;
+    overscroll-behavior: contain;
+  }
+
+  .nav-links > * {
+    flex-shrink: 0;
+  }
+}
+
+/* Small phones: keep the hero status badges on one line where possible. */
+@media (max-width: 400px) {
+  .hero-badge {
+    letter-spacing: .05em;
+  }
+}
+
+/* Buttons stay on one line wherever there is room for it. */
+@media (min-width: 481px) {
+  .btn {
+    white-space: nowrap;
+  }
+}
+
+/* Tablets: pricing note above its buttons instead of a cramped side column. */
+@media (max-width: 1040px) {
+  .pricing-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .pricing-bottom > * {
+    max-width: 100%;
+  }
+}
+
+/* Mobile hero: fewer elements — one status badge, title, price, one call to action, highlights. */
+@media (max-width: 760px) {
+  .hero .hero-badges {
+    margin-bottom: 14px;
+  }
+
+  .hero .hero-badge:not(.hero-badge-status) {
+    display: none;
+  }
+
+  .hero .hero-badge-status {
+    padding: 6px 12px;
+    font-size: 10.5px;
+    letter-spacing: .08em;
+  }
+
+  .hero .hero-actions {
+    margin-top: 22px;
+  }
+
+  .hero .hero-actions .btn-light {
+    display: none;
+  }
+
+  .hero .disclaimer-mini {
+    display: none;
+  }
+
+  .hero .hero-foot {
+    padding-bottom: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero .hero-stat dt {
+    letter-spacing: .04em;
+  }
+
+  .hero .hero-stat dd {
+    font-size: 15px;
+  }
+}
