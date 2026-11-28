@@ -15,14 +15,14 @@
   <link rel="preload" as="image" href="images/hero-aerial-view.webp" fetchpriority="high">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23073F42%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-family=%27Georgia,serif%27 font-size=%2738%27 font-weight=%27700%27 fill=%27%23F2C34E%27 text-anchor=%27middle%27%3EP%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="theme.css?v=202611271259">
-  <link rel="stylesheet" href="styles.css?v=202611271400">
+  <link rel="stylesheet" href="styles.css?v=202611281200">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Tailwind's .container (width:100% + breakpoint max-widths) overrides the site's
     // gutter-aware .container in styles.css and makes content run edge-to-edge.
     tailwind.config = { corePlugins: { container: false } };
   </script>
-  <script src="app.js?v=202611271430" defer></script>
+  <script src="app.js?v=202611281200" defer></script>
 </head>
 
 <body>
@@ -43,9 +43,11 @@
         <a href="#prestige">About Prestige</a>
         <div class="nav-menu-footer">
           <button class="btn nav-menu-cta" type="button" data-enquiry="Enquire Now">Enquire now <span aria-hidden="true">↗</span></button>
+          <a class="nav-menu-call" href="tel:+917417412100">Call +91 741 741 2100</a>
           <p>Prestige Group · Sector 150, Noida</p>
         </div>
       </nav>
+      <a class="header-call" href="tel:+917417412100" aria-label="Call +91 741 741 2100"><span class="header-call-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span class="header-call-number">+91 741 741 2100</span></a>
       <button class="btn nav-cta" type="button" data-enquiry="Enquire Now">Enquire now <span aria-hidden="true">↗</span></button>
       <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span></span></button>
     </div>
@@ -81,6 +83,33 @@
           <div class="hero-stat hero-stat-location"><dt>Noida · Sports City</dt><dd>Sector 150</dd></div>
         </dl>
         <p class="container disclaimer-mini">*Indicative pre-launch information. Subject to confirmation.</p>
+      </div>
+    </section>
+
+    <section class="lead-band lead-band--dark" id="register" aria-labelledby="register-title">
+      <div class="container lead-band-inner">
+        <div class="lead-band-copy">
+          <p class="eyebrow">Pre-launch registration</p>
+          <h2 class="lead-band-title" id="register-title">Get the latest price list &amp; brochure</h2>
+          <p class="lead-band-intro">Share your details to receive indicative pricing, payment plans and the project brochure for Prestige Sector 150, Noida.</p>
+          <ul class="lead-band-points">
+            <li>Indicative price sheet for 2, 3 &amp; 4 BHK</li>
+            <li>Project brochure and payment plan</li>
+            <li>Priority updates on launch and RERA status</li>
+          </ul>
+        </div>
+        <div class="lead-card">
+          <p class="lead-card-title">Get price list</p>
+          <form class="lead-form" id="register-form" novalidate>
+            <input type="hidden" name="enquiryType" value="Request Price">
+            <div class="hp-field" aria-hidden="true"><label for="register-form-hp">Leave this field empty</label><input id="register-form-hp" name="companyWebsite" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="form-field"><label for="register-form-name">Full name *</label><input id="register-form-name" name="fullName" type="text" autocomplete="name" required maxlength="80" placeholder="Your name"></div>
+            <div class="form-field"><label for="register-form-mobile">Mobile number *</label><input id="register-form-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div>
+            <div class="form-field"><label for="register-form-email">Email address <span class="field-optional">(optional)</span></label><input id="register-form-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+            <button class="btn btn-dark form-submit" type="submit" data-label="Get price list">Get price list <span aria-hidden="true">↗</span></button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -236,6 +265,33 @@
           <p class="footnote plan-note">The 2 BHK layout is available on request. Floor plans are indicative, not to scale, and may change.</p>
         </div>
         <p class="footnote" style="margin-top:18px;">*Pre-launch figures. T = toilets, M = maid's room. Areas are super areas; other charges and taxes are additional. Floor plans shown are indicative, not approved layouts. Confirm all details against registered project documents when available.</p>
+      </div>
+    </section>
+
+    <section class="lead-band lead-band--light" id="floor-plans-enquiry" aria-labelledby="floor-plans-enquiry-title">
+      <div class="container lead-band-inner">
+        <div class="lead-band-copy">
+          <p class="eyebrow">Floor plans</p>
+          <h2 class="lead-band-title" id="floor-plans-enquiry-title">Unlock the full floor plans</h2>
+          <p class="lead-band-intro">Get high-resolution 2, 3 and 4 BHK layouts with carpet and super areas, sent to you by our property advisor.</p>
+          <ul class="lead-band-points">
+            <li>Detailed 3 BHK &amp; 4 BHK layouts</li>
+            <li>2 BHK layout on request</li>
+            <li>Unit sizes and tower options</li>
+          </ul>
+        </div>
+        <div class="lead-card">
+          <p class="lead-card-title">Get floor plans</p>
+          <form class="lead-form" id="floor-plans-enquiry-form" novalidate>
+            <input type="hidden" name="enquiryType" value="Explore Floor Plans">
+            <div class="hp-field" aria-hidden="true"><label for="floor-plans-enquiry-form-hp">Leave this field empty</label><input id="floor-plans-enquiry-form-hp" name="companyWebsite" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="form-field"><label for="floor-plans-enquiry-form-name">Full name *</label><input id="floor-plans-enquiry-form-name" name="fullName" type="text" autocomplete="name" required maxlength="80" placeholder="Your name"></div>
+            <div class="form-field"><label for="floor-plans-enquiry-form-mobile">Mobile number *</label><input id="floor-plans-enquiry-form-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div>
+            <div class="form-field"><label for="floor-plans-enquiry-form-email">Email address <span class="field-optional">(optional)</span></label><input id="floor-plans-enquiry-form-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+            <button class="btn btn-dark form-submit" type="submit" data-label="Get floor plans">Get floor plans <span aria-hidden="true">↗</span></button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -573,6 +629,33 @@
       </div>
     </section>
 
+    <section class="lead-band lead-band--dark" id="site-visit" aria-labelledby="site-visit-title">
+      <div class="container lead-band-inner">
+        <div class="lead-band-copy">
+          <p class="eyebrow">Site visit</p>
+          <h2 class="lead-band-title" id="site-visit-title">Schedule a site visit</h2>
+          <p class="lead-band-intro">See the Sector 150 location and the neighbourhood with our advisor. Pick-up and drop can be arranged on request.</p>
+          <ul class="lead-band-points">
+            <li>Guided tour of the Sector 150 location</li>
+            <li>Expressway, metro and schools nearby</li>
+            <li>Meet a property advisor in person</li>
+          </ul>
+        </div>
+        <div class="lead-card">
+          <p class="lead-card-title">Book site visit</p>
+          <form class="lead-form" id="site-visit-form" novalidate>
+            <input type="hidden" name="enquiryType" value="Schedule Site Visit">
+            <div class="hp-field" aria-hidden="true"><label for="site-visit-form-hp">Leave this field empty</label><input id="site-visit-form-hp" name="companyWebsite" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="form-field"><label for="site-visit-form-name">Full name *</label><input id="site-visit-form-name" name="fullName" type="text" autocomplete="name" required maxlength="80" placeholder="Your name"></div>
+            <div class="form-field"><label for="site-visit-form-mobile">Mobile number *</label><input id="site-visit-form-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div>
+            <div class="form-field"><label for="site-visit-form-email">Email address <span class="field-optional">(optional)</span></label><input id="site-visit-form-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+            <button class="btn btn-dark form-submit" type="submit" data-label="Book site visit">Book site visit <span aria-hidden="true">↗</span></button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <section class="section-pad gallery-section" id="gallery" aria-labelledby="gallery-title">
       <div class="container-wide">
         <div class="gallery-header reveal">
@@ -692,7 +775,18 @@
         <p class="eyebrow">Your next address begins here</p>
         <h2 class="section-title" id="final-title">Discover the Possibilities of Prestige Sector 150.</h2>
         <p class="section-intro">Register your interest to receive the latest project information, indicative pricing, available configurations and updates as official documents are released.</p>
-        <div class="final-actions"><button class="btn btn-light" type="button" data-enquiry="Enquire Now">Express your interest <span aria-hidden="true">↗</span></button><button class="btn btn-light" type="button" data-enquiry="Schedule Site Visit">Schedule a site visit <span aria-hidden="true">↗</span></button></div>
+        <div class="lead-card lead-card--final">
+          <p class="lead-card-title">Express your interest</p>
+          <form class="lead-form" id="final-form" novalidate>
+            <input type="hidden" name="enquiryType" value="Enquire Now">
+            <div class="hp-field" aria-hidden="true"><label for="final-form-hp">Leave this field empty</label><input id="final-form-hp" name="companyWebsite" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="form-field"><label for="final-form-name">Full name *</label><input id="final-form-name" name="fullName" type="text" autocomplete="name" required maxlength="80" placeholder="Your name"></div>
+            <div class="form-field"><label for="final-form-mobile">Mobile number *</label><input id="final-form-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div>
+            <div class="form-field"><label for="final-form-email">Email address <span class="field-optional">(optional)</span></label><input id="final-form-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+            <button class="btn btn-dark form-submit" type="submit" data-label="Submit enquiry">Submit enquiry <span aria-hidden="true">↗</span></button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
   </main>

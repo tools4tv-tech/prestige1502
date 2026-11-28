@@ -66,7 +66,8 @@
     'Explore Proposed Amenities': 'Request Amenity Details',
     'Explore Location': 'Get Location Details',
     'Request a Call Back': 'Request a Call Back',
-    'Request Developer Information': 'Request Developer Information'
+    'Request Developer Information': 'Request Developer Information',
+    'Auto Popup Enquiry': 'Get Exclusive Pre-launch Details'
   };
 
   // ==========================================
@@ -797,254 +798,208 @@
   // 16. SELL.DO CRM FORM SUBMISSION
   // ==========================================
 
-  enquiryForm?.addEventListener('submit', async (event) => {
+  // Every enquiry form (popup + inline forms) posts to the same
+  // endpoint with the same payload, then goes to the thank-you page.
+  const LEAD_SUBMITTED_KEY = 'prestige150-lead-submitted';
+
+  const handleLeadSubmit = async (event) => {
 
     event.preventDefault();
 
-    if (!formStatus || !submitButton) return;
+    const form = event.currentTarget;
+    const isModalForm = form === enquiryForm;
+    const status = isModalForm ? formStatus : form.querySelector('.form-status');
+    const button = form.querySelector('[type="submit"]');
 
-    formStatus.textContent = '';
-    formStatus.className = 'form-status';
+    if (!status || !button) return;
+
+    const buttonHtml = button.innerHTML;
+
+    status.textContent = '';
+    status.className = 'form-status';
+
+    const fail = (message, field) => {
+      status.textContent = message;
+      status.classList.add('error');
+      field?.focus();
+    };
 
     // Honeypot spam protection.
-    if (
-      enquiryForm.elements.companyWebsite &&
-      enquiryForm.elements.companyWebsite.value.trim()
-    ) {
-
-      formStatus.textContent =
-        'Unable to process this request. Please try again.';
-
-      formStatus.classList.add('error');
-
+    if (form.elements.companyWebsite?.value.trim()) {
+      fail('Unable to process this request. Please try again.');
       return;
     }
 
-    // ------------------------------------------
-    // Read customer information
-    // ------------------------------------------
-
-    const fullName =
-      enquiryForm.elements.fullName.value.trim();
-
-    const mobile =
-      enquiryForm.elements.mobile.value.trim();
-
-    const email =
-      enquiryForm.elements.email.value.trim();
+    const fullName = form.elements.fullName.value.trim();
+    const mobile = form.elements.mobile.value.trim();
+    const email = form.elements.email.value.trim();
 
     const selectedInterest =
-      enquiryType?.value || 'Enquire Now';
-
-    // ------------------------------------------
-    // Client-side validation
-    // ------------------------------------------
+      (isModalForm ? enquiryType?.value : form.elements.enquiryType?.value) ||
+      'Enquire Now';
 
     if (fullName.length < 2 || fullName.length > 80) {
-
-      formStatus.textContent =
-        'Please enter your full name.';
-
-      formStatus.classList.add('error');
-
-      enquiryForm.elements.fullName.focus();
-
+      fail('Please enter your full name.', form.elements.fullName);
       return;
     }
 
     // Any number is accepted (Indian or international); it only can't be empty.
     if (!mobile) {
-
-      formStatus.textContent =
-        'Please enter your mobile number.';
-
-      formStatus.classList.add('error');
-
-      enquiryForm.elements.mobile.focus();
-
+      fail('Please enter your mobile number.', form.elements.mobile);
       return;
     }
 
-    if (
-      email &&
-      !enquiryForm.elements.email.validity.valid
-    ) {
-
-      formStatus.textContent =
-        'Enter a valid email address or leave the field blank.';
-
-      formStatus.classList.add('error');
-
-      enquiryForm.elements.email.focus();
-
+    if (email && !form.elements.email.validity.valid) {
+      fail('Enter a valid email address or leave the field blank.', form.elements.email);
       return;
     }
 
-    // ------------------------------------------
-    // Disable button during submission
-    // ------------------------------------------
-
-    submitButton.disabled = true;
-
-    submitButton.innerHTML = 'Submitting…';
-
-    formStatus.textContent =
-      'Please wait while we submit your enquiry.';
-
-    // ------------------------------------------
-    // Prepare CRM payload
-    // ------------------------------------------
-
-    const trackingData = getTrackingData();
+    button.disabled = true;
+    button.innerHTML = 'Submitting…';
+    status.textContent = 'Please wait while we submit your enquiry.';
 
     const payload = {
-
-      // Customer details
       name: fullName,
       phone: mobile,
       email: email,
-
-      // Enquiry information
       interest: selectedInterest,
-
-      // Project information
       projectName: PROJECT_NAME,
-
-      // Website attribution
       source: CRM_SOURCE,
-
       page_url: window.location.href,
-
-      // Marketing attribution
-      ...trackingData
-
+      ...getTrackingData()
     };
 
     try {
 
-      // ----------------------------------------
-      // Send enquiry to Vercel backend
-      // ----------------------------------------
-
       const response = await fetch(LEAD_ENDPOINT, {
-
         method: 'POST',
-
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-
         body: JSON.stringify(payload),
-
         cache: 'no-store'
-
       });
 
       let result;
 
       try {
-
         result = await response.json();
-
       } catch (error) {
-
         throw new Error(
           'Invalid response from the enquiry service. Please try again.'
         );
-
       }
 
-      // ----------------------------------------
-      // Check backend response
-      // ----------------------------------------
-
       if (!response.ok || !result.success) {
-
         throw new Error(
           result.message ||
           'Unable to submit your enquiry. Please try again.'
         );
-
       }
 
-      // ----------------------------------------
-      // Successful CRM submission
-      // ----------------------------------------
-
-      formStatus.textContent =
+      status.textContent =
         'Thank you! Your enquiry has been submitted successfully. Our team will contact you shortly.';
+      status.classList.add('success');
 
-      formStatus.classList.add('success');
-
-      // ----------------------------------------
-      // Unlock relevant plans
-      // ----------------------------------------
-
+      // Unlock relevant plans (saved, so they stay unlocked on return).
       const unlockedGroup = Object.keys(PLAN_LOCK_GROUPS)
         .find((group) =>
           PLAN_LOCK_GROUPS[group].intent === selectedInterest
         );
 
       if (unlockedGroup) {
-
         unlockPlanGroup(unlockedGroup, true);
-
-        formStatus.textContent +=
-          unlockedGroup === 'master'
-            ? ' The master plan is now unlocked.'
-            : ' The floor plans are now unlocked below.';
-
       }
 
-      // ----------------------------------------
-      // Reset form after successful submission
-      // ----------------------------------------
-
-      enquiryForm.reset();
-
-      if (enquiryType) {
-        enquiryType.value = selectedInterest;
+      try {
+        window.localStorage.setItem(LEAD_SUBMITTED_KEY, '1');
+      } catch (error) {
+        // Storage unavailable.
       }
 
-      if (pageUrl) {
-        pageUrl.value = window.location.href;
+      form.reset();
+
+      if (isModalForm) {
+        if (enquiryType) enquiryType.value = selectedInterest;
+        if (pageUrl) pageUrl.value = window.location.href;
       }
 
-      // Go to the thank-you page (plan unlocks are already saved).
+      // Go to the thank-you page.
       window.location.href = 'thank-you/';
 
     } catch (error) {
 
-      // ----------------------------------------
-      // Handle submission errors
-      // ----------------------------------------
+      console.error('Prestige1502 CRM submission failed:', error);
 
-      console.error(
-        'Prestige1502 CRM submission failed:',
-        error
-      );
-
-      formStatus.textContent =
+      status.textContent =
         error.message ||
         'We could not submit your enquiry. Please try again later.';
-
-      formStatus.classList.add('error');
+      status.classList.add('error');
 
     } finally {
 
-      // ----------------------------------------
-      // Restore submit button
-      // ----------------------------------------
-
-      submitButton.disabled = false;
-
-      submitButton.innerHTML =
-        'Submit enquiry <span aria-hidden="true">↗</span>';
+      button.disabled = false;
+      button.innerHTML = buttonHtml;
 
     }
 
+  };
+
+  enquiryForm?.addEventListener('submit', handleLeadSubmit);
+
+  document.querySelectorAll('form.lead-form').forEach((form) => {
+    form.addEventListener('submit', handleLeadSubmit);
   });
+
+  // ==========================================
+  // 17. AUTO POPUP AFTER 30 SECONDS
+  // ==========================================
+
+  const AUTO_POPUP_DELAY = 30000;
+  const AUTO_POPUP_SESSION_KEY = 'prestige150-auto-popup-shown';
+
+  const storageGet = (store, key) => {
+    try {
+      return window[store].getItem(key);
+    } catch (error) {
+      return null;
+    }
+  };
+
+  if (
+    enquiryModal &&
+    storageGet('localStorage', LEAD_SUBMITTED_KEY) !== '1' &&
+    storageGet('sessionStorage', AUTO_POPUP_SESSION_KEY) !== '1'
+  ) {
+
+    const tryAutoPopup = () => {
+
+      // Don't interrupt someone already in a popup, the menu,
+      // or typing in one of the page forms.
+      const busy =
+        document.querySelector('.modal-backdrop.is-open') ||
+        isMenuOpen() ||
+        document.activeElement?.closest?.('form');
+
+      if (busy) {
+        window.setTimeout(tryAutoPopup, 10000);
+        return;
+      }
+
+      try {
+        window.sessionStorage.setItem(AUTO_POPUP_SESSION_KEY, '1');
+      } catch (error) {
+        // Storage unavailable.
+      }
+
+      openEnquiry('Auto Popup Enquiry');
+
+    };
+
+    window.setTimeout(tryAutoPopup, AUTO_POPUP_DELAY);
+
+  }
 
 })();
 

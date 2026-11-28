@@ -6840,3 +6840,262 @@ textarea {
     line-clamp: 4;
   }
 }
+
+/* Header call number — visible on every screen size */
+.header-call {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 43px;
+  padding: 0 16px 0 6px;
+  border-radius: 999px;
+  background: var(--color-gold);
+  color: #073F42;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.header-call:hover,
+.header-call:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .24);
+}
+
+.header-call-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #073F42;
+  color: var(--color-gold);
+}
+
+.nav-links .nav-menu-call {
+  display: inline-flex;
+  margin: 4px 0 12px;
+  padding: 0;
+  border-bottom: 0;
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  opacity: 1;
+  counter-increment: none;
+}
+
+.nav-links .nav-menu-call::before {
+  min-width: 0;
+  content: '☎';
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.nav-links .nav-menu-call::after {
+  content: none;
+}
+
+@media (min-width: 1041px) {
+  .nav-menu-call {
+    display: none;
+  }
+}
+
+@media (max-width: 1040px) {
+  .header-call {
+    margin-left: auto;
+  }
+
+  .header-call + .nav-cta,
+  .header-call ~ .menu-toggle {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-wrap {
+    gap: 10px;
+  }
+
+  .header-call {
+    min-height: 40px;
+    padding: 0 12px 0 4px;
+    gap: 6px;
+    font-size: 13.5px;
+  }
+
+  .header-call-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.menu-toggle {
+  flex-shrink: 0;
+}
+
+/* Phones: logo mark + call number + menu always fit on one row. */
+@media (max-width: 480px) {
+  .brand-copy {
+    display: none;
+  }
+
+  .header-call {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 340px) {
+  .header-call {
+    font-size: 13px;
+    padding-right: 10px;
+  }
+}
+
+/* ==========================================================================
+   Inline enquiry forms (always visible on the page)
+   ========================================================================== */
+.lead-band {
+  padding: clamp(56px, 8vw, 96px) 0;
+  background: var(--color-deep);
+  color: #fff;
+}
+
+.lead-band--light {
+  background: var(--color-soft);
+  color: var(--color-text);
+}
+
+.lead-band-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+}
+
+.lead-band .eyebrow {
+  color: var(--color-gold);
+}
+
+.lead-band--light .eyebrow {
+  color: var(--color-primary);
+}
+
+.lead-band-title {
+  margin: 10px 0 16px;
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 4.2vw, 48px);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.lead-band-intro {
+  max-width: 520px;
+  margin: 0 0 22px;
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: .82;
+}
+
+.lead-band-points {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lead-band-points li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.lead-band-points li::before {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-gold);
+  color: #073F42;
+  font-size: 12px;
+  font-weight: 800;
+  content: '✓';
+}
+
+.lead-card {
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--color-text);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .22);
+}
+
+.lead-band--light .lead-card {
+  box-shadow: 0 20px 50px rgba(7, 63, 66, .12);
+}
+
+.lead-card-title {
+  margin: 0 0 18px;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.lead-form .form-field {
+  margin-bottom: 14px;
+}
+
+.lead-form .form-submit {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.field-optional {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.lead-card--final {
+  width: 100%;
+  max-width: 460px;
+  margin: 28px 0 0;
+  text-align: left;
+}
+
+@media (max-width: 860px) {
+  .lead-band-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lead-card {
+    width: 100%;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lead-band-intro {
+    font-size: 15px;
+  }
+
+  .lead-card-title {
+    font-size: 21px;
+  }
+}
